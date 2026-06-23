@@ -4,6 +4,9 @@
 !.env.example
 *.local
 
+PROMPT_CODEX_ZIN_PROJETO_INICIAL.md
+docs/
+
 # Credentials and private keys
 *secret*
 *credentials*
