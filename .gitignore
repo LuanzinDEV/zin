@@ -1,0 +1,43 @@
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Credentials and private keys
+*secret*
+*credentials*
+*credential*
+*.pem
+*.key
+*.p12
+*.pfx
+google-client*.json
+client_secret*.json
+service-account*.json
+
+# Java / Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+coverage/
+npm-debug.log*
+
+# Logs
+*.log
+logs/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

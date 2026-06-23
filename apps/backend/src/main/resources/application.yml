@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: zin-platform
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:host.docker.internal}:${POSTGRES_PORT:5432}/${POSTGRES_DB:zin}
+    username: ${POSTGRES_USER:zin}
+    password: ${POSTGRES_PASSWORD:zin_dev_password}
+    hikari:
+      connection-timeout: 8000
+      maximum-pool-size: 10
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        format_sql: true
+  jackson:
+    time-zone: UTC
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+server:
+  port: 8080
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ZIN Platform
+    scope: Initial foundation
+

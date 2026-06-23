@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --zin-orange-50: #fff4ec;
+  --zin-orange-100: #ffe5d3;
+  --zin-orange-200: #ffc7a6;
+  --zin-orange-300: #ffa176;
+  --zin-orange-400: #ff7b3d;
+  --zin-orange-500: #fd5512;
+  --zin-orange-600: #e7460a;
+  --zin-orange-700: #bd3408;
+  --zin-orange-800: #962b0d;
+  --zin-orange-900: #782710;
+  --zin-navy-50: #f3f6fa;
+  --zin-navy-100: #e7ecf3;
+  --zin-navy-200: #cbd5e1;
+  --zin-navy-300: #9aa9bb;
+  --zin-navy-400: #66788f;
+  --zin-navy-500: #465a73;
+  --zin-navy-600: #33465d;
+  --zin-navy-700: #24364e;
+  --zin-navy-800: #18263a;
+  --zin-navy-900: #111c2d;
+  --zin-navy-950: #0b1320;
+  --background: #f7f9fc;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --text-primary: #18263a;
+  --text-secondary: #667085;
+  --text-muted: #98a2b3;
+  --border: #e6eaf0;
+  --border-strong: #cbd5e1;
+  --primary: #fd5512;
+  --primary-hover: #e7460a;
+  --primary-soft: #fff4ec;
+  --focus-ring: rgba(253, 85, 18, 0.28);
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0b1320;
+  --surface: #111c2d;
+  --surface-elevated: #18263a;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #98a2b3;
+  --border: #24364e;
+  --border-strong: #33465d;
+  --primary: #ff6a24;
+  --primary-hover: #ff7b3d;
+  --primary-soft: rgba(253, 85, 18, 0.14);
+  --focus-ring: rgba(255, 106, 36, 0.34);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Manrope", sans-serif;
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+

@@ -1,0 +1,50 @@
+name: zin-prod
+
+services:
+  backend:
+    build:
+      context: ./apps/backend
+      target: runtime
+    env_file:
+      - .env
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      POSTGRES_HOST: ${POSTGRES_HOST:-host.docker.internal}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_DB: ${POSTGRES_DB:-zin}
+      POSTGRES_USER: ${POSTGRES_USER:-zin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-zin_dev_password}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health | grep -q UP"]
+      interval: 20s
+      timeout: 5s
+      retries: 8
+      start_period: 30s
+    networks:
+      - zin-prod
+
+  web:
+    build:
+      context: ./apps/web
+      target: runtime
+    ports:
+      - "${WEB_PORT:-5173}:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8080 >/dev/null"]
+      interval: 20s
+      timeout: 5s
+      retries: 8
+      start_period: 20s
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - zin-prod
+
+networks:
+  zin-prod:
+    driver: bridge
